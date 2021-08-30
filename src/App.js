@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Container } from 'semantic-ui-react';
+import Home from './components/Home';
+import People from './components/People';
+import Planets from './components/Planets';
 
 function App() {
   const [people, setPeople] = useState ([]);
@@ -23,10 +29,24 @@ function App() {
     fetchPlanets();
 
   }, []);
-  return (
-   <div className="App">
-     hello
-   </div>
-  );
+  return <div className="App">
+    <Router>
+    <Navbar />
+    <Container>
+      <Switch> 
+        <Route exact path= "/">
+          <Home />
+        </Route>
+        <Route exact path= "/people">
+        <People />
+        </Route>
+        <Route exact path= "/planets">
+          <Planets />
+        </Route>
+      </Switch>
+    </Container>
+
+    </Router>
+    </div>;
 }
 export default App;
